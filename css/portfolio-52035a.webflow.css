@@ -502,6 +502,11 @@ figcaption {
   display: flex;
   position: relative;
   }
+
+.socialLink {
+  text-decoration: underline;
+  font-weight: 500;
+}
   
 .wide-background {
   width: 70%;
