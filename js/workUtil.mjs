@@ -65,8 +65,8 @@ const dynamicContent = projects.map(project => `
         <div class="_w-h1">
             <h1 class="main-h1">${project.title}</h1>
             <p class="paragraph-2">${project.description}</p>
-            <a href="${project.githubLink}" class="socialLink">GitHub</a>
-            <a href="${project.liveLink}" class="socialLink">Live Version</a>
+            <a target="_blank" href="${project.githubLink}" class="socialLink">GitHub</a>
+            <a target="_blank" href="${project.liveLink}" class="socialLink">Live Version</a>
         </div>
     </div>
     <div class="proj_body-wrap">
