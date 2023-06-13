@@ -38,7 +38,7 @@ const projects = [
     {
       title: "Next Level Bets",
       description: "Back-End private application built width: </br><strong>Node.js, JavaScript, MongoDB, Mongoose, Express, Puppeteer.</strong>",
-      link: "https://github.com/kendallhunt1/nextlevelbets",
+      liveLink: "https://github.com/kendallhunt1/NFLDataScraper",
       githubLink: "https://github.com/kendallhunt1/NFLDataScraper",
       anchor: "nextlevelbets",
       backgroundImage: "./images/nflgithub.png",
