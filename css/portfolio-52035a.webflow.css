@@ -203,8 +203,8 @@ figcaption {
   }
   
 .main-h1.home {
-  font-size: 25vh;
-  line-height: 22vh;
+  font-size: 18vh;
+  line-height: 17vh;
   }
   
 .paragraph {
@@ -490,6 +490,7 @@ figcaption {
   /* border: solid green 2px; */
   padding-top: 13vh !important;
   }
+
   
 ._w-title {
   /* border: solid orange 2px; */
@@ -559,6 +560,12 @@ figcaption {
   font-family: Varela Round, sans-serif;
   font-size: 12px;
   }
+
+  .radiant-text {
+  font-size: 3em;
+  font-weight: bold;
+  color: rgb(0, 174, 255);
+}
   
 .div-block-14 {
   flex-direction: column;
@@ -761,9 +768,10 @@ figcaption {
 .navbar {
   width: 100%;
   height: auto;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(255, 255, 255, 0);
   padding: 5vh 5vw 0;
   position: absolute;
+  z-index: 1;
   }
   
 .brand {
@@ -946,7 +954,7 @@ figcaption {
   }
   
 .project-description {
-  color: #7a7a7a;
+  color: #d1d1d1;
   font-size: 18px;
   }
   

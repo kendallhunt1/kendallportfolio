@@ -1,4 +1,10 @@
 const projects = [
+  {
+      title: "<span style='color: #43bbf3ff;'>Radiant</span>",
+      description: "Radiant is built using the following technologies: </br><strong>Flutter, Dart, Google Firebase, NoSQL Firebase DB, and Python/TensorFlow lite for ML Model. NLP for voice logging features.</br> Figma, and UIzard for App UI/UX design. </strong>",
+      link: "work.html#gobackz",
+      backgroundImage: "./images/radiantscreenshot.png"
+    },
     {
       title: "GoBackz",
       description: "GoBackz UI built using: </br><strong>React, JavaScript, SCSS/CSS.</strong> </br>Functionality of site built using: </br><strong>Node.js, MongoDB, Mongoose, Express, Axios.</strong>",
@@ -42,7 +48,7 @@ const projects = [
             </div>
             <h2 class="project-title">${project.title}</h2>
             <p class="project-description">${project.description}</p>
-            <a href="${project.link}" class="project-link">view project</a>
+            <a href="${project.link}" class="project-link">Go to Work</a>
           </div>
         </div>
       </div>
