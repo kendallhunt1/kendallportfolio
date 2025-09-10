@@ -112,13 +112,11 @@ function el(tag, opts = {}) {
   return n;
 }
 
-// Helpers: pull tech names from your HTML (inside <strong>...</strong>) and de-dupe images
 function extractTech(html = "") {
-  // grab the first <strong>...</strong> block, split by commas/slashes
   const m = /<strong>(.*?)<\/strong>/i.exec(html);
   if (!m) return [];
   return m[1]
-    .split(/[,\u2013\/]| and /i)       // commas, slashes, 'and'
+    .split(/[,\u2013\/]| and /i)
     .map(s => s.replace(/<\/?br\s*\/?>/gi,'').trim())
     .filter(Boolean);
 }
@@ -189,9 +187,8 @@ function detailsTemplate(p){
 }
 
 
-// ----- Card template -----
 function cardTemplate(p) {
-  const card = el('article', { className:'card' });    // keep your .card since you adjusted its size
+  const card = el('article', { className:'card' });
   const h = el('h2', { text:p.title });
 
   const imgWrap = el('div', { className:'card-img' });
@@ -222,13 +219,11 @@ function mountDeck() {
   nav.append(prev, next);
   deck.append(stage, nav);
 
-  // Down arrow + details container
-  const down = el('button', { className:'deck-down', html:'&#x2193;', attrs:{ 'aria-label':'View project details' }});
+  // + details container
   let details = el('section', { className:'pdetails', attrs:{ id:'projectDetails' }}); // NOTE: let (we reassign)
 
   // Mount order
   root.replaceChildren(deck);
-  root.appendChild(down);
   root.appendChild(details);
 
   const cards = deckData.map(cardTemplate);
@@ -263,10 +258,10 @@ function mountDeck() {
     cards[prev2Index].classList.add('is-prev2','prev2');
     cards[next2Index].classList.add('is-next2','next2');
 
-    requestAnimationFrame(() => {
-      const h = cards[idx].offsetHeight;
-      stage.style.height = (h || 620) + 'px';
-    });
+    // requestAnimationFrame(() => {
+    //   const h = cards[idx].offsetHeight;
+    //   stage.style.height = (h || 620) + 'px';
+    // });
 
     updateDetails();
   }
@@ -293,12 +288,6 @@ function mountDeck() {
     if (Math.abs(dx) > 40){ go(idx + (dx<0?1:-1)); startX = null; }
   }, { passive:true });
   stage.addEventListener('touchend', ()=> startX=null);
-
-  // Scroll to details
-  down.addEventListener('click', ()=>{
-    const target = document.getElementById('projectDetails');
-    if (target) target.scrollIntoView({ behavior:'smooth', block:'start' });
-  });
 
   render();
 }
