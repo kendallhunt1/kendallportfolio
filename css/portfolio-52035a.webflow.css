@@ -1397,20 +1397,24 @@ figcaption {
 .about-wrap {
   max-width: 82%;
   margin: 0 auto;
-  display: flex;             
+  display: flex; 
+  flex-direction: column;            
   gap: 32px;                   
   align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .about-text {
+  max-width: 80%;
   flex: 1 1 50%;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
 }
 
 .about-text h2 {
-  margin: 0 0 8px;
+  margin: 0 0 30px;
   font-family: Palatino Linotype, Book Antiqua, Palatino, serif; 
   font-size: 60px;
   line-height: 48px;
@@ -1420,7 +1424,7 @@ figcaption {
 .about-text h3 { 
   margin: 18px 0 6px;
   font-size: 24px;
-  line-height: 32px;
+  line-height: 30px;
   color: #111;
 }
 
@@ -1430,21 +1434,26 @@ figcaption {
   line-height: 30px;
 }
 
-
 .about-media {
   flex: 1 1 50%;
 }
 
 .about-grid { 
   display: grid;
-  grid-template-columns: repeat(2, 1fr); 
+  grid-template-columns: repeat(3, 1fr); 
+  grid-template-rows: auto auto;         
   gap: 12px;
 }
 
+.about-grid img:first-child {
+  grid-column: 1 / -1; 
+}
+
 .about-grid img { 
-  width: 100%;
-  height: 220px;                    
-  object-fit: cover;
+  /* height: 50%; */
+  width: auto;
+  position: center;                  
+  object-fit: center;
   border-radius: 12px;
   box-shadow: 0 10px 24px rgba(0,0,0,.12);
   border: 1px solid rgba(0,0,0,.06);
@@ -1476,5 +1485,106 @@ figcaption {
     height: 200px;
   }
 }
+
+/* ============================ */
+/* Connect / LinkedIn (NEW)     */
+/* ============================ */
+
+.cta-section { /* NEW: section wrapper */
+  background: #f5f6f7;               /* subtle contrast from About section */
+  padding: 6vh 5vw;                  /* breathing room */
+}
+
+.cta-card { /* NEW: card container */
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;  /* media bigger than text */
+  gap: 24px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(0,0,0,.08);
+  overflow: hidden;
+}
+
+.cta-media { /* NEW: left column image */
+  position: relative;
+  min-height: 300px;
+  background: #e9eef2;
+}
+.cta-media img {
+  width: auto;
+  height: 100%;
+  object-fit: fill; /* fills nicely */
+  display: block;
+}
+
+.cta-body { /* NEW: right column content */
+  padding: 24px 24px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centers vertically relative to media */
+  gap: 12px;
+}
+
+.cta-title { /* NEW */
+  margin: 0 0 4px;
+  font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
+  font-size: 34px;
+  line-height: 42px;
+  color: #000;
+}
+
+.cta-copy { /* NEW */
+  color: #4a4a4a;
+  font-size: 18px;
+  line-height: 28px;
+  margin: 0 0 8px;
+}
+
+.cta-actions { /* NEW: buttons row */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+/* Buttons (reuse a style close to your pbtns, but keep neutral on light bg) */
+.cta-btn { /* NEW */
+  text-decoration: none;
+  display: inline-block;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-weight: 700;
+  border: 1px solid rgba(0,0,0,.12);
+  color: #111;
+  background: #fff;
+  box-shadow: 0 6px 16px rgba(0,0,0,.06);
+  transition: transform .12s ease, box-shadow .12s ease, background .15s ease;
+}
+.cta-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.10);
+  background: #fafafa;
+}
+
+.cta-btn-primary { /* NEW: highlight (use your accent) */
+  background: #89CFF0;              /* var(--accent) in light context */
+  color: #0a0f14;
+  border-color: transparent;
+  box-shadow: 0 10px 24px rgba(137,207,240,.25);
+}
+.cta-btn-primary:hover {
+  background: #7cc7ee;              /* slightly darker on hover */
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .cta-card { grid-template-columns: 1fr; } /* stack */
+  .cta-body { padding: 20px; }
+  .cta-media { min-height: 220px; }
+}
+
 
 
