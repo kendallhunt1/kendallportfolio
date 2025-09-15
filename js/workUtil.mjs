@@ -40,7 +40,7 @@ const projects = [
     title: "Next Level Bets",
     description: "Back-End private application built width: </br><strong>Node.js, JavaScript, MongoDB, Mongoose, Express, Puppeteer.</strong>",
     link: "https://github.com/kendallhunt1/nextlevelbets",
-    githubLink: "https://github.com/kendallhunt1/NFLDataScraper",
+    githubLink: "https://github.com/kendallhunt1/nextlevelbets",
     anchor: "nextlevelbets",
     backgroundImage: "./images/nflgithub.png",
     longDescription: "Next Level Bets is a private project between myself, and another person. It scrapes nearly every recorded/recordable stat from every NFL team from 1990-2023 (Modern Era Football) from Pro Football Reference. That data is then plugged into equations that give us more accurate probabilities  of outcomes than what sportsbooks have.",
