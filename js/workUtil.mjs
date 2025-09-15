@@ -68,7 +68,7 @@ const radiant = {
   githubLink: "https://github.com/kendallhunt1",
   liveLink: "",
   anchor: "radiant",
-  backgroundImage: "./images/RadiantScreenshot.png",
+  backgroundImage: "./images/radiantscreenshot.png",
   longDescription: "Radiant is a privacy-first health tracking ecosystem with on-device ML for insights.",
   projectImage1: "./images/radiantscreenshot.png",
   projectImage2: "./images/radiantscreenshot.png"
@@ -207,7 +207,6 @@ function cardTemplate(p) {
   return card;
 }
 
-// ----- Deck mount -----
 function mountDeck() {
   const root = document.getElementById('dynamicWork');
   const deck = el('div', { attrs:{ id:'projectDeck' }});
@@ -219,10 +218,8 @@ function mountDeck() {
   nav.append(prev, next);
   deck.append(stage, nav);
 
-  // + details container
   let details = el('section', { className:'pdetails', attrs:{ id:'projectDetails' }}); // NOTE: let (we reassign)
 
-  // Mount order
   root.replaceChildren(deck);
   root.appendChild(details);
 
@@ -239,11 +236,10 @@ function mountDeck() {
     const p = deckData[idx];
     const fresh = detailsTemplate(p);
     details.replaceWith(fresh);
-    details = fresh; // keep reference updated
+    details = fresh;
   }
 
   function render() {
-    // state classes for fan (use your own names if you didn't switch)
     cards.forEach(c => c.classList.remove('is-active','is-prev','is-next','is-prev2','is-next2','active','prev','next','prev2','next2'));
 
     const prevIndex  = (idx - 1 + cards.length) % cards.length;
@@ -251,17 +247,11 @@ function mountDeck() {
     const prev2Index = (idx - 2 + cards.length) % cards.length;
     const next2Index = (idx + 2) % cards.length;
 
-    // support either namespaced (is-*) or your earlier plain classes
     cards[idx].classList.add('is-active','active');
     cards[prevIndex].classList.add('is-prev','prev');
     cards[nextIndex].classList.add('is-next','next');
     cards[prev2Index].classList.add('is-prev2','prev2');
     cards[next2Index].classList.add('is-next2','next2');
-
-    // requestAnimationFrame(() => {
-    //   const h = cards[idx].offsetHeight;
-    //   stage.style.height = (h || 620) + 'px';
-    // });
 
     updateDetails();
   }
