@@ -101,6 +101,16 @@
   aspect-ratio: 16/10;
   background:#000;
   margin-bottom:14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pdetails-media img{  
+  height:100%;
+  width: auto;
+  /* object-fit:cover; */
+  /* display:block; */
 }
 
 .pdetails-thumbs{

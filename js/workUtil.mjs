@@ -28,8 +28,10 @@ const projects = [
     tools: [html, css, scss, javascript, express, axios, mongodb],
     backgroundImage: "./images/working.png",
     longDescription: "GoBackz website meant to inform about GoBackz, and accept driver applications. GoBackz is an app that allows users to schedule drivers to come pick up their return packages, and return them for them.",
-    projectImage1: "./images/gobackzmacbook.png",
-    projectImage2: "./images/gobackzgroup.png"
+    images: [
+      "./images/gobackzmacbook.png",
+      "./images/gobackzgroup.png"
+    ]
   },
   {
     title: "Focus Tracks",
@@ -40,8 +42,10 @@ const projects = [
     tools: [html, css, scss, javascript],
     backgroundImage: "./images/focustracks.png",
     longDescription: "An online media player. Similar interface to nearly every music player built using React.",
-    projectImage1: "./images/focustracksmacbook.png",
-    projectImage2: "./images/focustracksgroup.png"
+    images: [
+      "./images/focustracksmacbook.png",
+      "./images/focustracksgroup.png"
+    ]
   },
   {
     title: "Golf-Sidekick",
@@ -52,8 +56,10 @@ const projects = [
     tools: [html, css, scss, ejs, javascript, nodejs, express, oauth, mongodb],
     backgroundImage: "./images/golfsidekick.png",
     longDescription: "Golf Sidekick is an application built to make golf simpler, and make players lower their scores. Golf can be endlessly complex, or so it seems, but I like simplicity so this application takes in user data, and gives back advice in a simple way. No need to get fancy.",
-    projectImage1: "./images/golfsidekickmacbook.png",
-    projectImage2: "./images/golfsidekickgroup.png"
+    images: [
+      "./images/golfsidekickmacbook.png",
+      "./images/golfsidekickgroup.png"
+    ]
   },
   {
     title: "Next Level Bets",
@@ -63,8 +69,10 @@ const projects = [
     tools: [javascript, nodejs, express, axios, mongodb],
     backgroundImage: "./images/nflgithub.png",
     longDescription: "Next Level Bets is a private project between myself, and another person. It scrapes nearly every recorded/recordable stat from every NFL team from 1990-2023 (Modern Era Football) from Pro Football Reference. That data is then plugged into equations that give us more accurate probabilities  of outcomes than what sportsbooks have.",
-    projectImage1: "./images/nflgithub.png",
-    projectImage2: "./images/nextlevelbetsgroup.png"
+    images: [
+      "./images/nflgithub.png",
+      "./images/nextlevelbetsgroup.png"
+    ]
   },
   {
     title: "NASA API",
@@ -75,8 +83,10 @@ const projects = [
     tools: [react, javascript, html, css, scss],
     backgroundImage: "./images/working.png",
     longDescription: "NASA API is as simple as it reads. It's a webpage that uses NASA's public API, the fetchAPI, and React to render a responsive website that displays NASA's Image of the Day, it's title, and it's description.",
-    projectImage1: "./images/nasamacbook.png",
-    projectImage2: "./images/nasagroup.png"
+    images: [
+      "./images/nasamacbook.png",
+      "./images/nasagroup.png"
+    ]
   }
 ];
 
@@ -86,42 +96,18 @@ const radiant = {
   githubLink: "https://github.com/kendallhunt1",
   liveLink: "",
   anchor: "radiant",
-  backgroundImage: "./images/radiantscreenshot.png",
-  longDescription: "Radiant is a privacy-first health tracking ecosystem with on-device ML for insights.",
+  backgroundImage: "./images/radiantscreenshotport.png",
+  longDescription: "Radiant  is a health & fitness app that takes out all of the hurdles the rest of the industry has decided are now the norm. It removes all of the paywalls to features that should be standard for every user. All user information is encrypted, and protected. Users can track everything from every bite of food, to every second of sleep that they get, their energy levels and how their mood is. The ML model can help users draw understanding from their health metrics based off of their daily habits and inputs. Radiant is designed with users in mind, not pay walls.",
   tools: [python, flutter, dart, firebase, firestore, tflite],
-  projectImage1: "./images/radiantscreenshot.png",
-  projectImage2: "./images/radiantscreenshot.png"
+  images: [
+  "./images/radiantscreenshot.png",
+  "./images/radiantscreenshotport1.png",
+  "./images/radiantscreenshotport2.png",
+  ]
 };
 
-const extra1 = {
-  title: "Project Six",
-  description: "Short description here.",
-  link: "/work/ProjectSix",
-  githubLink: "",
-  liveLink: "",
-  anchor: "project-six",
-  backgroundImage: "./images/working.png",
-  longDescription: "Details about Project Six.",
-  projectImage1: "./images/working.png",
-  projectImage2: "./images/working.png"
-};
+const projectList = [radiant, ...projects].slice(0, 5);
 
-const extra2 = {
-  title: "Project Seven",
-  description: "Short description here.",
-  link: "/work/ProjectSeven",
-  githubLink: "",
-  liveLink: "",
-  anchor: "project-seven",
-  backgroundImage: "./images/working.png",
-  longDescription: "Details about Project Seven.",
-  projectImage1: "./images/working.png",
-  projectImage2: "./images/working.png"
-};
-
-const projectList = [radiant, ...projects, extra1, extra2].slice(0, 7);
-
-// ----- Helpers -----
 function el(tag, opts = {}) {
   const n = document.createElement(tag);
   if (opts.className) n.className = opts.className;
@@ -140,12 +126,19 @@ function extractTech(html = "") {
     .filter(Boolean);
 }
 
+function isStr(x){ return typeof x === 'string' && x.trim().length > 0; }
+
 function uniqueImages(p) {
-  const imgs = [p.projectImage1, p.projectImage2, p.backgroundImage].filter(Boolean);
-  return [...new Set(imgs)];
+  const fromArray = Array.isArray(p.images) ? p.images.filter(isStr) : [];
+  const legacy = [p.projectImage1, p.projectImage2, p.backgroundImage].filter(isStr);
+  const out = [];
+  const seen = new Set();
+  [...fromArray, ...legacy].forEach(src => {
+    if (!seen.has(src)) { seen.add(src); out.push(src); }
+  });
+  return out;
 }
 
-// ----- Details template (kept) -----
 function detailsTemplate(p){
   const tech = extractTech(p.description || "");
   const imgs = uniqueImages(p);
@@ -154,20 +147,26 @@ function detailsTemplate(p){
   wrap.innerHTML = `
     <div class="pdetails-inner">
       <!-- Media -->
-      <div class="pdetails-media">
+      <div class="pdetails-media ${imgs.length ? '' : 'is-empty'}">
         <div class="pdetails-hero">
-          <img class="pdetails-hero-img" src="${imgs[0] || ''}" alt="${p.title} screenshot" loading="lazy">
+          ${imgs.length ? `
+            <img class="pdetails-hero-img" src="${imgs[0]}" alt="${p.title} screenshot" loading="lazy">
+          ` : `
+            <div class="pdetails-hero-placeholder" aria-hidden="true">No image</div>
+          `}
         </div>
+
         ${imgs.length > 1 ? `
-        <div class="pdetails-thumbs" role="tablist" aria-label="${p.title} screenshots">
-          ${imgs.map((src,i)=>`
-            <button type="button" tabindex="0"
-                    class="pdetails-thumb ${i===0?'is-active':''}"
-                    data-src="${src}" aria-label="View image ${i+1}">
-              <img src="${src}" alt="${p.title} thumbnail ${i+1}" loading="lazy">
-            </button>
-          `).join('')}
-        </div>`:``}
+          <div class="pdetails-thumbs" role="tablist" aria-label="${p.title} screenshots">
+            ${imgs.map((src,i)=>`
+              <button type="button" tabindex="0"
+                      class="pdetails-thumb ${i===0?'is-active':''}"
+                      data-src="${src}" aria-label="View image ${i+1}">
+                <img src="${src}" alt="${p.title} thumbnail ${i+1}" loading="lazy">
+              </button>
+            `).join('')}
+          </div>
+        `:``}
       </div>
 
       <!-- Text -->
@@ -204,11 +203,10 @@ function detailsTemplate(p){
       </div>
     </div>
   `;
-  
 
-  // Thumbs -> swap hero + selected state
   const hero = wrap.querySelector('.pdetails-hero-img');
   const thumbs = wrap.querySelectorAll('.pdetails-thumb');
+
   thumbs.forEach((btn, i) => {
     btn.setAttribute('role', 'tab');
     btn.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
@@ -222,7 +220,7 @@ function detailsTemplate(p){
       btn.setAttribute('aria-selected', 'true');
 
       const src = btn.getAttribute('data-src');
-      if (src) {
+      if (src && hero) {
         hero.src = src;
         const t = (wrap.querySelector('.pdetails-body h3')?.textContent || 'project');
         hero.alt = `${t} screenshot`;
@@ -240,22 +238,20 @@ function detailsTemplate(p){
   return wrap;
 }
 
+
 function mountProjects() {
   const root = document.getElementById('dynamicWork');
   if (!root) return;
 
   const wrapper = el('section', { className: 'pdetails-wrapper' });
 
-  // ⬇️ Create the details element (the project card)
   let details = el('section', { className:'pdetails', attrs:{ id:'projectDetails' }});
 
-  // ⬇️ Create the overlay nav container + buttons INSIDE it
   const navOverlay = el('div', { className: 'compact-nav' });
   const prev = el('button', { className: 'nav-btn prev', text: '‹', attrs:{ 'aria-label':'Previous project' }});
   const next = el('button', { className: 'nav-btn next', text: '›', attrs:{ 'aria-label':'Next project' }});
   navOverlay.append(prev, next);
 
-  // ⬇️ Add the details and the overlay to the wrapper
   wrapper.append(details, navOverlay);
   root.replaceChildren(wrapper);
 
@@ -279,7 +275,6 @@ function mountProjects() {
     if(e.key==='ArrowRight') go(idx+1);
   });
 
-  // swipe
   let startX = null;
   wrapper.addEventListener('touchstart', e=>{ startX = e.touches[0].clientX }, { passive:true });
   wrapper.addEventListener('touchmove', e=>{
@@ -292,7 +287,5 @@ function mountProjects() {
   render();
 }
 
-
-// Run
 if (document.readyState !== 'loading') mountProjects();
 else window.addEventListener('DOMContentLoaded', mountProjects);

@@ -1302,7 +1302,7 @@ figcaption {
   .about-text h2{ font-size: 50px; line-height: 58px; margin-bottom: 18px; }
   .about-text p { font-size: 17px; line-height: 28px; }
 
-  /* drop to 2 columns a bit earlier than tablets */
+  
   .about-grid{
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
@@ -1310,27 +1310,52 @@ figcaption {
   .about-grid img:first-child{ grid-column: 1 / -1; }
 
   .cta-card {
-    grid-template-columns: 1fr;   /* stack */
+    grid-template-columns: 1fr;
     gap: 20px;
   }
 
   .cta-media {
-    min-height: 320px;            /* keep image size */
-    order: -1;                    /* picture stays first just in case */
+    min-height: 320px;
+    order: -1;
   }
 
   .cta-body {
     padding: 20px;
-    text-align: center;           /* optional: center-align content */
+    text-align: center;
   }
 
   .cta-actions {
-    justify-content: center;      /* buttons centered under text */
+    justify-content: center;
   }
 
-  /* NAV / BRAND */
+  
   .navbar{ padding: 3.5vh 5vw 0; }
   .image-9{ width: 220px; height: auto; }
+}
+
+@media (max-width: 1000px) {
+  .cta-section .cta-card{
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "media"
+      "body";
+    gap: 20px;
+  }
+
+  .cta-section .cta-media{
+    aspect-ratio: 16 / 9;
+    min-height: auto;
+  }
+
+  .cta-section .cta-body{
+    text-align: center;
+    padding: 20px;
+  }
+
+  .cta-section .cta-actions{
+    justify-content: center;
+  }
 }
 
 
@@ -1338,18 +1363,13 @@ figcaption {
   .about-wrap {                   
     flex-direction: column;
   }
-  .about-media {
-    order: -1;                     
-  }
 
-  /* HERO */
   .wrapper-title{ padding-left: 6vw; padding-right: 6vw; }
   .main-h1.home{ font-size: 12vh; line-height: 11.5vh; }
   .home-subhead{ width: 70vw; }
   .paragraph-3{ font-size: 16px; line-height: 28px; }
   .radiant-text{ font-size: 2.2em; }
 
-  /* ABOUT */
   .about-wrap{
     max-width: 92%;
     gap: 24px;
@@ -1372,12 +1392,11 @@ figcaption {
     gap: 10px;
   }
   .about-grid img:first-child{
-    grid-column: 1 / -1; /* keep hero image full row */
+    grid-column: 1 / -1;
   }
 
-  /* CTA / CONNECT */
   .cta-card{
-    grid-template-columns: 1fr; /* stack */
+    grid-template-columns: 1fr;
     gap: 16px;
   }
   .cta-media{ min-height: 240px; }
@@ -1386,12 +1405,11 @@ figcaption {
   .cta-actions{ gap: 10px; }
   .cta-btn{ padding: 11px 14px; }
 
-  /* NAV / HEADER spacing tweaks */
   .navbar{ padding: 4vh 5vw 0; }
   .nav-menu{ padding-top: 2vh; padding-bottom: 1vh; }
   .image-9{ width: 220px; height: auto; }
 
-  .cta-card { grid-template-columns: 1fr; } /* stack */
+  .cta-card { grid-template-columns: 1fr; }
   .cta-body { padding: 20px; }
   .cta-media { min-height: 220px; }
 }
